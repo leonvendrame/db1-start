@@ -14,12 +14,12 @@ public class App {
         return number1 - number2;
     }
 
-    public static void upper(String message) {
-        System.out.println(message.toUpperCase());
+    public static String upper(String message) {
+        return  message.toUpperCase();
     }
 
-    public static void lower(String message) {
-        System.out.println(message.toLowerCase());
+    public static String lower(String message) {
+        return message.toLowerCase();
     }
 
     public static Double min(List<Double> numbers) {
@@ -34,25 +34,33 @@ public class App {
 
     public static void main(String[] args) {
         Integer[] readInteger = new Integer[2];
+        List<Double> doubles = new ArrayList<>();
         String readMessage;
         Scanner scanner = new Scanner(System.in);
 
-        for (int i = 0; i < 2; i++) {
-            System.out.printf("Insira um número: ");
+        for (int i = 0; i < 2; ++i) {
+            System.out.printf("Insira um número inteiro: ");
             readInteger[i] = scanner.nextInt();
         }
 
         scanner.nextLine();
 
-        System.out.println(sum(readInteger[0], readInteger[1]));
-        System.out.println(sub(readInteger[0], readInteger[1]));
+        System.out.println("A soma entre eles é: " + sum(readInteger[0], readInteger[1]));
+        System.out.println("A diferença entre eles é: " + sub(readInteger[0], readInteger[1]));
 
         System.out.printf("Insira uma mensagem: ");
         readMessage = scanner.nextLine();
-        upper(readMessage);
-        lower(readMessage);
+        System.out.println("Sua mensagem maiúscula: " + upper(readMessage));
+        System.out.println("Sua mensagem minúscula: " + lower(readMessage));
 
-        System.out.println(min(List.of(9.9, -34.4, -43.4)));
+        for (int i = 0; i < 3; ++i) {
+            System.out.printf("Insira um número real: ");
+            doubles.add(scanner.nextDouble());
+        }
+
+        System.out.println("O menor entre eles é: " + min(doubles));
+
+        scanner.close();
     }
 
 }
