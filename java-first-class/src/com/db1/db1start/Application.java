@@ -1,5 +1,8 @@
 package com.db1.db1start;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Application {
 
     public Integer sum(Integer number1, Integer number2) {
@@ -45,7 +48,7 @@ public class Application {
     }
 
     public Integer howManyCharacters(String string) {
-        return string.replaceAll("[^a-zA-Z]","").length();
+        return string.length();
     }
 
     public Integer howManyLetters(String string) {
@@ -67,15 +70,17 @@ public class Application {
 
     public String changeFirstName(String name) {
         String[] separatedNames = name.split(" ");
-        String response = "";
+        StringBuilder response = new StringBuilder();
         separatedNames[0] = "Aluno(a)";
+
         for (int i = 0; i < separatedNames.length; ++i) {
-            response += separatedNames[i];
+            response.append(separatedNames[i]);
+
             if (i != separatedNames.length - 1) {
-                response += " ";
+                response.append(" ");
             }
         }
-        return response;
+        return response.toString();
     }
 
     public String[] commaSpaceSplit(String string) {
@@ -83,7 +88,7 @@ public class Application {
     }
 
     public Integer vowelCount(String string) {
-        return string.trim().replaceAll("[^aeiou]", "").length();
+        return string.toLowerCase().replaceAll("[^aeiou]", "").length();
     }
 
     public String reverseString(String string) {
