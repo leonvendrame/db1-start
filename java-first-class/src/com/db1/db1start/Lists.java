@@ -49,14 +49,21 @@ public class Lists {
     }
 
     public Map mapOddsEvens(List<Integer> numbersList) {
-        Map<String, Integer> mapOddsEvens = new HashMap<>();
+        Map<String, List<Integer>> mapOddsEvens = new HashMap<>();
+        List<Integer> odds = new ArrayList<>();
+        List<Integer> evens = new ArrayList<>();
+
         numbersList.forEach(number -> {
             if (number % 2 == 0) {
-                mapOddsEvens.put("Par", number);
+                evens.add(number);
             } else {
-                mapOddsEvens.put("Impar", number);
+                odds.add(number);
             }
         });
+
+        mapOddsEvens.put("Par", evens);
+        mapOddsEvens.put("Impar", odds);
+
         return mapOddsEvens;
     }
 }

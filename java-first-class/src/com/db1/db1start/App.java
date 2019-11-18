@@ -28,6 +28,8 @@ public class App {
         listsExample.printListReverseOrderByName(favoriteColorsList);
         printSeparator();
 
+        System.out.println(listsExample.mapOddsEvens(Arrays.asList(2, 3, 4, 5)));
+
 
     }
 
