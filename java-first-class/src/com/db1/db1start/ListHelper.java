@@ -2,11 +2,12 @@ package com.db1.db1start;
 
 import java.util.*;
 
-public class Lists {
+public class ListHelper {
 
     public List<String> favoriteColors() {
         List<String> favoriteColors = new ArrayList<>();
-        favoriteColors.addAll(Arrays.asList("Branco", "Preto", "Cinza", "Azul", "Vermelho", "Verde"));
+        favoriteColors.addAll(Arrays.asList("Branco", "Preto", "Cinza",
+                "Azul", "Vermelho", "Verde"));
         return favoriteColors;
     }
 

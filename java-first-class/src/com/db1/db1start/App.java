@@ -7,29 +7,28 @@ import java.util.List;
 public class App {
 
     public static void main(String[] args) {
-        Lists listsExample = new Lists();
+        ListHelper listHelperExample = new ListHelper();
 
-        List<String> favoriteColorsList = listsExample.favoriteColors();
+        List<String> favoriteColorsList = listHelperExample.favoriteColors();
         List<String> testString = new ArrayList<>();
 
-        listsExample.removeColorFromList(favoriteColorsList, "Azul");
-        listsExample.removeColorFromList(favoriteColorsList, "Preto");
+        listHelperExample.removeColorFromList(favoriteColorsList, "Azul");
+        listHelperExample.removeColorFromList(favoriteColorsList, "Preto");
 
-        testString = listsExample.stringsToList("Teste 0", "Teste 1", "Teste 2");
-        System.out.println(listsExample.listSize(testString));
+        testString = listHelperExample.stringsToList("Teste 0", "Teste 1", "Teste 2");
+        System.out.println(listHelperExample.listSize(testString));
         printSeparator();
 
-        listsExample.printFavoriteColorsList();
+        listHelperExample.printFavoriteColorsList();
         printSeparator();
 
-        listsExample.printFavoriteColorsOrderByName();
+        listHelperExample.printFavoriteColorsOrderByName();
         printSeparator();
 
-        listsExample.printListReverseOrderByName(favoriteColorsList);
+        listHelperExample.printListReverseOrderByName(favoriteColorsList);
         printSeparator();
 
-        System.out.println(listsExample.mapOddsEvens(Arrays.asList(2, 3, 4, 5)));
-
+        System.out.println(listHelperExample.mapOddsEvens(Arrays.asList(2, 3, 4, 5)));
 
     }
 
