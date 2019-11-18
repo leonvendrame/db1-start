@@ -1,5 +1,6 @@
-package com.db1.db1start;
+package com.db1.db1start.unitTests;
 
+import com.db1.db1start.Application;
 import org.junit.Assert;
 import org.junit.Test;
 
