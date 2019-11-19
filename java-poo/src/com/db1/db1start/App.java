@@ -1,5 +1,7 @@
 package com.db1.db1start;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -23,14 +25,15 @@ public class App {
         professores.add(new Professor("Robson", "Robson@gmail.com"));
 
         materias.add(new Materia("Programação Orientada a Objetos", "Teste",
-                12, professores.get(0)));
+                12.0, professores.get(0), 4));
         materias.add(new Materia("Banco de Dados", "Bancos de Teste",
-                12, professores.get(1)));
+                8.0, professores.get(1), 2));
         materias.add(new Materia("Estruturas de Dados", "Teste de estruturas",
-                12, professores.get(2)));
+                8.0, professores.get(2), 2));
 
-        aulas.add(new Aula(new Date(11-04-2019), materias.get(0), Arrays.asList(alunos.get(0), alunos.get(2))));
-        aulas.add(new Aula(new Date(11-05-2019), materias.get(1), alunos.subList(0,4)));
+        aulas.add(new Aula(new Date(), materias.get(0), Arrays.asList(alunos.get(0), alunos.get(2))));
+        aulas.add(new Aula(new Date(), materias.get(1), alunos.subList(0,4)));
+        aulas.get(0).adicionarPresenca(alunos.get(3));
 
         aulas.get(0).printAlunosPresentes();
         printSeparador();

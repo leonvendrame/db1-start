@@ -6,7 +6,7 @@ public abstract class Pessoa {
 
     public Pessoa(String nome, String email) {
         this.nome = nome;
-        this.email = email.toUpperCase();
+        this.email = email.toLowerCase();
     }
 
     public String getNome() {

@@ -1,5 +1,7 @@
 package com.db1.db1start;
 
+import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +13,7 @@ public class Aula {
     public Aula(Date data, Materia materia, List<Aluno> alunosPresentes) {
         this.data = data;
         this.materia = materia;
-        this.alunosPresentes = alunosPresentes;
+        this.alunosPresentes = new ArrayList<>(alunosPresentes);
     }
 
     public Date getData() {
@@ -38,7 +40,12 @@ public class Aula {
         this.alunosPresentes = alunosPresentes;
     }
 
+    public void adicionarPresenca(Aluno aluno) {
+        this.alunosPresentes.add(aluno);
+    }
+
     public void printAlunosPresentes() {
+        System.out.println(this.getData().toString());
         this.getAlunosPresentes().forEach(aluno -> {
             System.out.println(aluno.getNome().toUpperCase());
         });
