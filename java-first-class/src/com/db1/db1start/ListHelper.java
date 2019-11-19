@@ -49,7 +49,7 @@ public class ListHelper {
         colorsList.removeAll(Arrays.asList(color));
     }
 
-    public Map mapOddsEvens(List<Integer> numbersList) {
+    public Map<String, List<Integer>> mapOddsEvens(List<Integer> numbersList) {
         Map<String, List<Integer>> mapOddsEvens = new HashMap<>();
         List<Integer> odds = new ArrayList<>();
         List<Integer> evens = new ArrayList<>();
