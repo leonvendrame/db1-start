@@ -79,4 +79,14 @@ public class MateriaTest {
             Assert.assertEquals("Quantidade de aulas não pode ser nula",  campoNaoPodeSerNulo.getMessage());
         }
     }
+
+    @Test
+    public void esperaTrocaDeProfessor() {
+        Professor professor = new Professor("Professor", "professor@teste.com");
+        Professor novoProfessor = new Professor("Novo", "novoprofessor@teste.com");
+        Materia materia = new Materia("Matéria", "Teste Unitário", 23.5,
+                professor, 4);
+        materia.trocarProfessor(novoProfessor);
+        Assert.assertEquals(novoProfessor, materia.getProfessorResponsavel());
+    }
 }

@@ -48,6 +48,9 @@ public class Aula {
     }
 
     public void adicionarPresenca(Aluno aluno) {
+        if (aluno == null) {
+            throw new CampoNaoPodeSerNulo("Aluno não pode ser nulo");
+        }
         this.alunosPresentes.add(aluno);
     }
 

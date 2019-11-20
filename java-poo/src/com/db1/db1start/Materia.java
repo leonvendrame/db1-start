@@ -70,4 +70,11 @@ public class Materia {
     public void setQtdeAulas(Integer qtdeAulas) {
         this.qtdeAulas = qtdeAulas;
     }
+
+    public void trocarProfessor(Professor professorNovo) {
+        if (professorNovo == null) {
+            throw new CampoNaoPodeSerNulo("Professor não pode ser nulo");
+        }
+        this.professorResponsavel = professorNovo;
+    }
 }
