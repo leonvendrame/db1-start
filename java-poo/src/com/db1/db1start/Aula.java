@@ -11,6 +11,13 @@ public class Aula {
     private List<Aluno> alunosPresentes;
 
     public Aula(Date data, Materia materia, List<Aluno> alunosPresentes) {
+        if (data == null) {
+            throw new CampoNaoPodeSerNulo("Data não pode ser nula");
+        }
+        if (materia == null) {
+            throw new CampoNaoPodeSerNulo("Matéria não pode ser nula");
+        }
+
         this.data = data;
         this.materia = materia;
         this.alunosPresentes = new ArrayList<>(alunosPresentes);

@@ -8,6 +8,22 @@ public class Materia {
     private Integer qtdeAulas;
 
     public Materia(String nome, String conteudo, Double cargaHoraria, Professor professorResponsavel, Integer qtdeAulas) {
+        if (nome == null) {
+            throw new CampoNaoPodeSerNulo("Nome não pode ser nulo");
+        }
+        if (conteudo == null) {
+            throw new CampoNaoPodeSerNulo("Conteúdo não pode ser nulo");
+        }
+        if (cargaHoraria == null) {
+            throw new CampoNaoPodeSerNulo("Carga horária não pode ser nula");
+        }
+        if (professorResponsavel == null) {
+            throw new CampoNaoPodeSerNulo("Professor não pode ser nulo");
+        }
+        if (qtdeAulas == null) {
+            throw new CampoNaoPodeSerNulo("Quantidade de aulas não pode ser nula");
+        }
+
         this.nome = nome;
         this.conteudo = conteudo;
         this.cargaHoraria = cargaHoraria;
