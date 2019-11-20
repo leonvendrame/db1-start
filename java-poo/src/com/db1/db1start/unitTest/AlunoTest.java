@@ -12,7 +12,7 @@ public class AlunoTest {
         String emailEsperado = "teste@teste.com";
         String nomeEsperado = "Teste";
         Aluno aluno = new Aluno("Teste", "teste@teste.com");
-        Assert.assertEquals(aluno.getNome(), nomeEsperado);
-        Assert.assertEquals(aluno.getEmail(), emailEsperado);
+        Assert.assertEquals(nomeEsperado, aluno.getNome());
+        Assert.assertEquals(emailEsperado, aluno.getEmail());
     }
 }

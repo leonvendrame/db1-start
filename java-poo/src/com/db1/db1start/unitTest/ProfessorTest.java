@@ -11,7 +11,8 @@ public class ProfessorTest {
         String nomeEsperado = "Professor";
         String emailEsperado = "professor@teste.com";
         Professor professor = new Professor("Professor", "PROFESSOR@teste.com");
-        Assert.assertEquals(professor.getNome(), nomeEsperado);
-        Assert.assertEquals(professor.getEmail(), emailEsperado);
+
+        Assert.assertEquals(nomeEsperado, professor.getNome());
+        Assert.assertEquals(emailEsperado, professor.getEmail());
     }
 }

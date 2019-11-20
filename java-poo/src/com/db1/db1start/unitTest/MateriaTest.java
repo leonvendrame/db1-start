@@ -18,10 +18,10 @@ public class MateriaTest {
         Materia materia = new Materia("Matéria", "Teste Unitário", 23.5,
                 professor, 4);
 
-        Assert.assertEquals(materia.getNome(), nomeEsperado);
-        Assert.assertEquals(materia.getConteudo(), conteudoEsperado);
-        Assert.assertEquals(materia.getCargaHoraria(), cargaHorariaEsperada);
-        Assert.assertEquals(materia.getQtdeAulas(), qtdeAulasEsperada);
-        Assert.assertEquals(materia.getProfessorResponsavel(), professor);
+        Assert.assertEquals(nomeEsperado, materia.getNome());
+        Assert.assertEquals(conteudoEsperado, materia.getConteudo());
+        Assert.assertEquals(cargaHorariaEsperada, materia.getCargaHoraria());
+        Assert.assertEquals(qtdeAulasEsperada, materia.getQtdeAulas());
+        Assert.assertEquals(professor, materia.getProfessorResponsavel());
     }
 }

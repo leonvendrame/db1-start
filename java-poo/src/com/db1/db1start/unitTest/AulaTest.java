@@ -22,6 +22,8 @@ public class AulaTest {
         alunos.add(new Aluno("Aluno 1", "aluno1@teste.com"));
         alunos.add(new Aluno("Aluno 2", "aluno2@teste.com"));
         Aula aula = new Aula(new Date(), materia, alunos);
-        Assert.assertEquals(aula.getMateria(), materia);
+
+        Assert.assertEquals(materia, aula.getMateria());
+        Assert.assertEquals(alunos, aula.getAlunosPresentes());
     }
 }
