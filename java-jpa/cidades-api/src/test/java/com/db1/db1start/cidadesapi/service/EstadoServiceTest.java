@@ -16,29 +16,29 @@ public class EstadoServiceTest {
     @Autowired
     private EstadoService estadoService;
 
-//    @Test
-//    public void esperaEstadoCriado() {
-//        Estado estado = estadoService.criar("Paraná");
-//        Assert.assertNotNull(estado);
-//        System.out.println(estado.getId());
-//    }
+    @Test
+    public void esperaEstadoCriado() {
+        Estado estado = estadoService.criar("Paraná");
+        Assert.assertNotNull(estado);
+        System.out.println(estado.getId());
+    }
 
-//    @Test
-//    public void esperaEstadoPorBusca() {
-//        Assert.assertNotNull(estadoService.buscaEstadoPorNome("Paraná"));
-//    }
+    @Test
+    public void esperaEstadoPorBusca() {
+        Assert.assertNotNull(estadoService.buscaEstadoPorNome("Paraná"));
+    }
 
-//    @Test
-//    public void esperaExcecaoEstadoNaoEncontrado() {
-//        try {
-//            estadoService.buscaEstadoPorNome("Paraná");
-//        } catch (RuntimeException e) {
-//            System.out.println(e.getMessage());
-//        }
-//    }
+    @Test
+    public void esperaExcecaoEstadoNaoEncontrado() {
+        try {
+            estadoService.buscaEstadoPorNome("Paraná");
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
-//    @AfterAll
-//    public void limparBanco() {
-//        estadoService.limpar();
-//    }
+    @AfterAll
+    public void limparBanco() {
+        estadoService.limpar();
+    }
 }

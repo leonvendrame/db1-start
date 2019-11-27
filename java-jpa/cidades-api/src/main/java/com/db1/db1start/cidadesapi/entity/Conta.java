@@ -18,6 +18,7 @@ public class Conta {
     private Agencia agencia;
 
     @OneToOne(mappedBy = "conta")
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
     public Conta(Double saldo, Agencia agencia, Cliente cliente) {

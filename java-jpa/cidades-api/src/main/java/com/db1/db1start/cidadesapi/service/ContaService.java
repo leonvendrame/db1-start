@@ -18,8 +18,8 @@ public class ContaService {
 
     public Conta criar(Double saldo, Agencia agencia, Cliente cliente) {
         Conta conta = new Conta(saldo, agencia, cliente);
-        clienteService.adicionarConta(conta, cliente.getId());
         contaRepository.save(conta);
+        clienteService.adicionarConta(conta, cliente.getId());
         return conta;
     }
 

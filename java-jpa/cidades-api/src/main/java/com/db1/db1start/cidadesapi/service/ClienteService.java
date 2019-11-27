@@ -34,5 +34,6 @@ public class ClienteService {
                 "Cliente não encontrado"
         ));
         cliente.setConta(conta);
+        clienteRepository.save(cliente);
     }
 }
