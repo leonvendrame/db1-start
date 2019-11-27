@@ -19,7 +19,6 @@ public class ContaService {
     public Conta criar(Double saldo, Agencia agencia, Cliente cliente) {
         Conta conta = new Conta(saldo, agencia, cliente);
         contaRepository.save(conta);
-        clienteService.adicionarConta(conta, cliente.getId());
         return conta;
     }
 
@@ -33,5 +32,19 @@ public class ContaService {
 
     public void removerPorId(Long id) {
         contaRepository.deleteById(id);
+    }
+
+    public void adicionarCliente(Long idConta, Cliente cliente) {
+        Conta conta = contaRepository.findById(idConta).orElseThrow(
+                () -> new RuntimeException("Conta não encontrada")
+        );
+        conta.setCliente(cliente);
+        contaRepository.save(conta);
+    }
+
+    public Conta buscarPorIdCliente(Long id) {
+        return contaRepository.findByCliente(clienteService.buscarPorId(id)).orElseThrow(
+                () -> new RuntimeException("Conta não encontrada")
+        );
     }
 }

@@ -1,5 +1,6 @@
 package com.db1.db1start.cidadesapi.service;
 
+import com.db1.db1start.cidadesapi.entity.Cliente;
 import com.db1.db1start.cidadesapi.entity.Conta;
 import org.junit.After;
 import org.junit.Assert;
@@ -29,26 +30,38 @@ public class ContaServiceTest {
     @Autowired
     ClienteService clienteService;
 
-    @Test
-    public void esperaContaCriada() {
-        estadoService.criar("São Paulo");
-        cidadeService.criar("Osasco", estadoService.buscaEstadoPorNome("São Paulo"));
-        agenciaService.criar(cidadeService.buscaCidadePorNome("Osasco"), "0001", "0001");
-        clienteService.criar("Leonardo", "000000000");
-        Conta conta = contaService.criar(0d, agenciaService.buscarPorNumeroAgencia("0001"),
-                clienteService.buscarPorNome("Leonardo"));
-
-        Assert.assertNotNull(contaService.buscarPorId(conta.getId()));
-    }
-
     @Before
-//    @After
     public void limparBanco() {
-        clienteService.limpar();
         contaService.limpar();
+        clienteService.limpar();
         agenciaService.limpar();
         cidadeService.limpar();
         estadoService.limpar();
     }
 
+    @Test
+    public void esperaContaCriada() {
+        estadoService.criar("Paraná");
+        cidadeService.criar("Marialva", estadoService.buscaEstadoPorNome("Paraná"));
+        agenciaService.criar(cidadeService.buscaCidadePorNome("Marialva"), "0001", "0001");
+        Cliente cliente = clienteService.criar("Leonardo", "000000000");
+        Conta conta = contaService.criar(0d, agenciaService.buscarPorNumeroAgencia("0001"), cliente);
+
+        Assert.assertNotNull(contaService.buscarPorId(conta.getId()));
+    }
+
+    @Test
+    public void esperaEncontrarContaPorIdCliente() {
+        estadoService.criar("Paraná");
+        cidadeService.criar("Marialva", estadoService.buscaEstadoPorNome("Paraná"));
+        agenciaService.criar(cidadeService.buscaCidadePorNome("Marialva"), "0001", "0001");
+        Cliente cliente = clienteService.criar("Leonardo", "000000000");
+        Conta contaEsperada = contaService.criar(200d, agenciaService.buscarPorNumeroAgencia("0001"), cliente);
+
+        Conta conta = contaService.buscarPorIdCliente(cliente.getId());
+        Assert.assertEquals(contaEsperada.getId(), conta.getId());
+        Assert.assertEquals(contaEsperada.getAgencia().getId(), conta.getAgencia().getId());
+        Assert.assertEquals(contaEsperada.getCliente().getId(), conta.getCliente().getId());
+        Assert.assertEquals(contaEsperada.getSaldo(), conta.getSaldo());
+    }
 }

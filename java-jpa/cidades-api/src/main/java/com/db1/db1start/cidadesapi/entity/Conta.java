@@ -17,7 +17,7 @@ public class Conta {
     @JoinColumn(name = "agencia_id")
     private Agencia agencia;
 
-    @OneToOne(mappedBy = "conta")
+    @OneToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
@@ -60,4 +60,5 @@ public class Conta {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+
 }

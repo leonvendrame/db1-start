@@ -16,14 +16,12 @@ public class Cliente {
     @Column
     private String cpf;
 
-    @OneToOne
-    @JoinColumn(name = "conta_id")
+    @OneToOne(mappedBy = "cliente")
     private Conta conta;
 
     public Cliente(String nome, String cpf) {
         this.nome = nome;
         this.cpf = cpf;
-        this.conta = null;
     }
 
     public Cliente() {}
