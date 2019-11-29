@@ -25,13 +25,13 @@ public class EstadoServiceTest {
 
     @Test
     public void esperaEstadoPorBusca() {
-        Assert.assertNotNull(estadoService.buscaEstadoPorNome("Paraná"));
+        Assert.assertNotNull(estadoService.buscaPorNome("Paraná"));
     }
 
     @Test
     public void esperaExcecaoEstadoNaoEncontrado() {
         try {
-            estadoService.buscaEstadoPorNome("Paraná");
+            estadoService.buscaPorNome("Paraná");
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
@@ -39,6 +39,6 @@ public class EstadoServiceTest {
 
     @AfterAll
     public void limparBanco() {
-        estadoService.limpar();
+        estadoService.removerTodos();
     }
 }

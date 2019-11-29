@@ -36,13 +36,13 @@ public class ContaServiceTest {
         clienteService.limpar();
         agenciaService.limpar();
         cidadeService.limpar();
-        estadoService.limpar();
+        estadoService.removerTodos();
     }
 
     @Test
     public void esperaContaCriada() {
         estadoService.criar("Paraná");
-        cidadeService.criar("Marialva", estadoService.buscaEstadoPorNome("Paraná"));
+        cidadeService.criar("Marialva", estadoService.buscaPorNome("Paraná"));
         agenciaService.criar(cidadeService.buscaCidadePorNome("Marialva"), "0001", "0001");
         Cliente cliente = clienteService.criar("Leonardo", "000000000");
         Conta conta = contaService.criar(0d, agenciaService.buscarPorNumeroAgencia("0001"), cliente);
@@ -53,7 +53,7 @@ public class ContaServiceTest {
     @Test
     public void esperaEncontrarContaPorIdCliente() {
         estadoService.criar("Paraná");
-        cidadeService.criar("Marialva", estadoService.buscaEstadoPorNome("Paraná"));
+        cidadeService.criar("Marialva", estadoService.buscaPorNome("Paraná"));
         agenciaService.criar(cidadeService.buscaCidadePorNome("Marialva"), "0001", "0001");
         Cliente cliente = clienteService.criar("Leonardo", "000000000");
         Conta contaEsperada = contaService.criar(200d, agenciaService.buscarPorNumeroAgencia("0001"), cliente);
