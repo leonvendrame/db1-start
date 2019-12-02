@@ -13,7 +13,7 @@ import java.util.List;
 public class CidadeController {
 
     @Autowired
-    CidadeService cidadeService;
+    private CidadeService cidadeService;
 
     @GetMapping("/api/v1/cidades")
     public List<Cidade> buscarTodas() {

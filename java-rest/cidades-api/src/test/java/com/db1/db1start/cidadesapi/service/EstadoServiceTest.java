@@ -1,9 +1,9 @@
 package com.db1.db1start.cidadesapi.service;
 
 import com.db1.db1start.cidadesapi.entity.Estado;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -37,7 +37,7 @@ public class EstadoServiceTest {
         }
     }
 
-    @AfterAll
+    @After
     public void limparBanco() {
         estadoService.removerTodos();
     }

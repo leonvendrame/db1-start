@@ -13,10 +13,10 @@ import java.util.List;
 public class ClienteService {
 
     @Autowired
-    ClienteRepository clienteRepository;
+    private ClienteRepository clienteRepository;
 
     @Autowired
-    ContaService contaService;
+    private ContaService contaService;
 
     public Cliente criar(String nome, String cpf) {
         Cliente cliente = new Cliente(nome, cpf);

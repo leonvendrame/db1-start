@@ -1,26 +1,14 @@
 package com.db1.db1start.cidadesapi.dto;
 
-import java.util.List;
-
-public class EstadoDTO {
-
+public class ClienteDTO {
     private Long id;
     private String nome;
+    private String cpf;
 
-    public EstadoDTO(Long id, String nome) {
+    public ClienteDTO(Long id,String nome, String cpf) {
         this.id = id;
         this.nome = nome;
-    }
-
-    public EstadoDTO() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        this.cpf = cpf;
     }
 
     public String getNome() {
@@ -29,5 +17,13 @@ public class EstadoDTO {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 }

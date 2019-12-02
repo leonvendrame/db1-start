@@ -12,7 +12,7 @@ import java.util.List;
 public class AgenciaService {
 
     @Autowired
-    AgenciaRepository agenciaRepository;
+    private AgenciaRepository agenciaRepository;
 
     public Agencia criar(Cidade cidade, String numeroAgencia, String numeroBanco) {
         Agencia agencia = new Agencia(cidade, numeroAgencia, numeroBanco);

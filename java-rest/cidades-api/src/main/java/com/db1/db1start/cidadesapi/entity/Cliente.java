@@ -21,7 +21,7 @@ public class Cliente {
 
     public Cliente(String nome, String cpf) {
         this.nome = nome;
-        this.cpf = cpf;
+        this.cpf = cpf.replaceAll("[^0-9]", "");
     }
 
     public Cliente() {}
