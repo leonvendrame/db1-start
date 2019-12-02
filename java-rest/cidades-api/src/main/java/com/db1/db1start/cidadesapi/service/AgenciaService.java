@@ -6,30 +6,47 @@ import com.db1.db1start.cidadesapi.repository.AgenciaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AgenciaService {
 
     @Autowired
     AgenciaRepository agenciaRepository;
 
-    public void criar(Cidade cidade, String numeroAgencia, String numeroBanco) {
+    public Agencia criar(Cidade cidade, String numeroAgencia, String numeroBanco) {
         Agencia agencia = new Agencia(cidade, numeroAgencia, numeroBanco);
-        agenciaRepository.save(agencia);
+        return agenciaRepository.save(agencia);
     }
 
-    public Agencia buscarPorCidade(Cidade cidade) {
-        return agenciaRepository.findByCidade(cidade).orElseThrow(() -> new RuntimeException("Não existem agências na cidade"));
+    public Agencia atualizar(Long agenciaId, String numeroAgenciaNovo, String numeroBancoNovo) {
+        Agencia agencia = buscarPorId(agenciaId);
+        agencia.setNumeroAgencia(numeroAgenciaNovo);
+        agencia.setNumeroBanco(numeroBancoNovo);
+        return agenciaRepository.save(agencia);
     }
 
-    public void removerPorId(Long id) {
-        agenciaRepository.deleteById(id);
+    public void removerPorId(Long agenciaId) {
+        agenciaRepository.deleteById(agenciaId);
     }
 
-    public void limpar() {
+    public void removerTodos() {
         agenciaRepository.deleteAll();
     }
 
+    public Agencia buscarPorId(Long agenciaId) {
+        return agenciaRepository.findById(agenciaId).orElseThrow(
+                () -> new RuntimeException("Agência não encontrada")
+        );
+    }
+
     public Agencia buscarPorNumeroAgencia(String numeroAgencia) {
-        return agenciaRepository.findByNumeroAgencia(numeroAgencia).orElseThrow(() -> new RuntimeException("Agencia não encontrada"));
+        return agenciaRepository.findByNumeroAgencia(numeroAgencia).orElseThrow(
+                () -> new RuntimeException("Agencia não encontrada")
+        );
+    }
+
+    public List<Agencia> buscarTodas() {
+        return agenciaRepository.findAll();
     }
 }

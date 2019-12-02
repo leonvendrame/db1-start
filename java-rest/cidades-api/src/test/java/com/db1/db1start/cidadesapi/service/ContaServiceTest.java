@@ -32,17 +32,17 @@ public class ContaServiceTest {
 
     @Before
     public void limparBanco() {
-        contaService.limpar();
-        clienteService.limpar();
-        agenciaService.limpar();
-        cidadeService.limpar();
+        contaService.removerTodos();
+        clienteService.removerTodos();
+        agenciaService.removerTodos();
+        cidadeService.removerTodas();
         estadoService.removerTodos();
     }
 
     @Test
     public void esperaContaCriada() {
         estadoService.criar("Paraná");
-        cidadeService.criar("Marialva", estadoService.buscaPorNome("Paraná"));
+        cidadeService.criar("Marialva", estadoService.buscarPorNome("Paraná"));
         agenciaService.criar(cidadeService.buscaCidadePorNome("Marialva"), "0001", "0001");
         Cliente cliente = clienteService.criar("Leonardo", "000000000");
         Conta conta = contaService.criar(0d, agenciaService.buscarPorNumeroAgencia("0001"), cliente);
@@ -53,12 +53,12 @@ public class ContaServiceTest {
     @Test
     public void esperaEncontrarContaPorIdCliente() {
         estadoService.criar("Paraná");
-        cidadeService.criar("Marialva", estadoService.buscaPorNome("Paraná"));
+        cidadeService.criar("Marialva", estadoService.buscarPorNome("Paraná"));
         agenciaService.criar(cidadeService.buscaCidadePorNome("Marialva"), "0001", "0001");
         Cliente cliente = clienteService.criar("Leonardo", "000000000");
         Conta contaEsperada = contaService.criar(200d, agenciaService.buscarPorNumeroAgencia("0001"), cliente);
 
-        Conta conta = contaService.buscarPorIdCliente(cliente.getId());
+        Conta conta = contaService.buscarPorClienteId(cliente.getId());
         Assert.assertEquals(contaEsperada.getId(), conta.getId());
         Assert.assertEquals(contaEsperada.getAgencia().getId(), conta.getAgencia().getId());
         Assert.assertEquals(contaEsperada.getCliente().getId(), conta.getCliente().getId());

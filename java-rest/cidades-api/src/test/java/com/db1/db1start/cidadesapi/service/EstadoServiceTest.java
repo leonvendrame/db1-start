@@ -25,13 +25,13 @@ public class EstadoServiceTest {
 
     @Test
     public void esperaEstadoPorBusca() {
-        Assert.assertNotNull(estadoService.buscaPorNome("Paraná"));
+        Assert.assertNotNull(estadoService.buscarPorNome("Paraná"));
     }
 
     @Test
     public void esperaExcecaoEstadoNaoEncontrado() {
         try {
-            estadoService.buscaPorNome("Paraná");
+            estadoService.buscarPorNome("Paraná");
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }

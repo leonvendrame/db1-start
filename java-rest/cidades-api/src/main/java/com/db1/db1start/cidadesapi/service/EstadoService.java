@@ -19,32 +19,36 @@ public class EstadoService {
     }
 
     public Estado atualizar(Long estadoId, String novoNome) {
-        Estado estado = buscaPorId(estadoId);
+        Estado estado = buscarPorId(estadoId);
         estado.setNome(novoNome);
         return estadoRepository.save(estado);
     }
 
-    public Estado buscaPorNome(String nome) {
-        return estadoRepository.findByNome(nome).orElseThrow(() -> new RuntimeException("Estado não encontrado"));
-    }
-
-    public Estado buscaPorId(Long id) {
-        return estadoRepository.findById(id).orElseThrow(() -> new RuntimeException("Estado não encontrado"));
-    }
-
-    public List<Estado> buscarTodos() {
-        return estadoRepository.findAll();
+    public void removerPorId(Long estadoId) {
+        estadoRepository.deleteById(estadoId);
     }
 
     public void removerPorNome(String nome) {
         estadoRepository.deleteByNome(nome);
     }
 
-    public void removerPorId(Long id) {
-        estadoRepository.deleteById(id);
-    }
-
     public void removerTodos() {;
         estadoRepository.deleteAll();
+    }
+
+    public Estado buscarPorId(Long estadoId) {
+        return estadoRepository.findById(estadoId).orElseThrow(
+                () -> new RuntimeException("Estado não encontrado")
+        );
+    }
+
+    public Estado buscarPorNome(String nome) {
+        return estadoRepository.findByNome(nome).orElseThrow(
+                () -> new RuntimeException("Estado não encontrado")
+        );
+    }
+
+    public List<Estado> buscarTodos() {
+        return estadoRepository.findAll();
     }
 }

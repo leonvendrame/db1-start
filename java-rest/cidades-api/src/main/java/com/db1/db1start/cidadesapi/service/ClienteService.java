@@ -7,6 +7,8 @@ import com.db1.db1start.cidadesapi.repository.ContaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ClienteService {
 
@@ -22,27 +24,43 @@ public class ClienteService {
         return cliente;
     }
 
-    public Cliente buscarPorNome(String nome) {
-        return clienteRepository.findByNome(nome).orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+    public Cliente atualizar(Long clienteId, String nomeNovo) {
+        Cliente cliente = clienteRepository.findById(clienteId).orElseThrow(
+                () -> new RuntimeException("Cliente não encontrado")
+        );
+        cliente.setNome(nomeNovo);
+        return clienteRepository.save(cliente);
     }
 
-    public void limpar() {
+    public void removerPorId(Long clienteId) {
+        clienteRepository.deleteById(clienteId);
+    }
+
+    public void removerTodos() {
         clienteRepository.deleteAll();
     }
 
-    public void removerPorId(Long id) {
-        clienteRepository.deleteById(id);
+    public Cliente buscarPorId(Long clienteId) {
+        return clienteRepository.findById(clienteId).orElseThrow(
+                () -> new RuntimeException("Cliente não encontrado")
+        );
     }
 
-    public void adicionarConta(Conta conta, Long idCliente) {
-        Cliente cliente = clienteRepository.findById(idCliente).orElseThrow(() -> new RuntimeException(
-                "Cliente não encontrado"
-        ));
+    public Cliente buscarPorNome(String nome) {
+        return clienteRepository.findByNome(nome).orElseThrow(
+                () -> new RuntimeException("Cliente não encontrado")
+        );
+    }
+
+    public List<Cliente> buscarTodos() {
+        return clienteRepository.findAll();
+    }
+
+    public void adicionarConta(Long clienteId, Conta conta) {
+        Cliente cliente = clienteRepository.findById(clienteId).orElseThrow(
+                () -> new RuntimeException("Cliente não encontrado")
+        );
         cliente.setConta(conta);
         clienteRepository.save(cliente);
-    }
-
-    public Cliente buscarPorId(Long id) {
-        return clienteRepository.findById(id).orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
     }
 }

@@ -7,14 +7,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class EstadoController {
 
     @Autowired
     EstadoService estadoService;
 
+    @GetMapping("/api/v1/estados")
+    public List<Estado> buscarTodos() {
+        return estadoService.buscarTodos();
+    }
+
     @GetMapping("/api/v1/estados/{id}")
     public Estado buscarEstadoPorId(@PathVariable Long id) {
-        return estadoService.buscaPorId(id);
+        return estadoService.buscarPorId(id);
     }
 }
