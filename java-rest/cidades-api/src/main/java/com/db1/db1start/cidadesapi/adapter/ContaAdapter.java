@@ -9,7 +9,7 @@ public class ContaAdapter {
         return new ContaDTO(
                 conta.getId(),
                 conta.getSaldo(),
-                AgenciaAdapter.transformarEntidadeParaDtp(conta.getAgencia()),
+                AgenciaAdapter.transformarEntidadeParaDto(conta.getAgencia()),
                 ClienteAdapter.transformarEntidadeParaDto(conta.getCliente())
         );
     }

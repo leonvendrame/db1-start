@@ -1,5 +1,6 @@
 package com.db1.db1start.cidadesapi.controller;
 
+import com.db1.db1start.cidadesapi.adapter.EstadoAdapter;
 import com.db1.db1start.cidadesapi.dto.EstadoDTO;
 import com.db1.db1start.cidadesapi.entity.Estado;
 import com.db1.db1start.cidadesapi.service.EstadoService;
@@ -19,6 +20,34 @@ public class EstadoController {
     @Autowired
     private EstadoService estadoService;
 
+    @PostMapping
+    public ResponseEntity<EstadoDTO> criar(@RequestBody EstadoDTO estadoDTO) {
+        Estado estado = estadoService.criar(estadoDTO.getNome());
+        EstadoDTO estadoResponse = transformaEntidadeParaDto(estado);
+        return ResponseEntity.status(200).body(estadoResponse);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<EstadoDTO> atualizar(@PathVariable Long id, @RequestBody EstadoDTO estadoDTO) {
+        try {
+            Estado estado = estadoService.atualizar(id, estadoDTO.getNome());
+            EstadoDTO estadoResponse = EstadoAdapter.transformaEntidadeParaDto(estado);
+            return ResponseEntity.status(200).body(estadoResponse);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(404).build();
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+        try {
+            estadoService.removerPorId(id);
+            return ResponseEntity.status(200).build();
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(404).build();
+        }
+    }
+
     @GetMapping
     public ResponseEntity<List<EstadoDTO>> buscarTodos() {
         List<EstadoDTO> listaDeEstados = new ArrayList<>();
@@ -34,23 +63,5 @@ public class EstadoController {
                 estadoService.buscarPorId(id)
         );
         return ResponseEntity.status(200).body(estadoResponse);
-    }
-
-    @PostMapping
-    public ResponseEntity<EstadoDTO> criarEstado(EstadoDTO estadoDTO) {
-        EstadoDTO estadoResponse = transformaEntidadeParaDto(
-                estadoService.criar(estadoDTO.getNome())
-        );
-        return ResponseEntity.status(200).body(estadoResponse);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
-        try {
-            estadoService.removerPorId(id);
-            return ResponseEntity.status(200).build();
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(404).build();
-        }
     }
 }

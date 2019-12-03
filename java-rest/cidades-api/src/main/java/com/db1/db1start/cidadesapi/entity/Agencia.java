@@ -26,6 +26,13 @@ public class Agencia {
     private List<Conta> contas;
 
     public Agencia(Cidade cidade, String numeroAgencia, String numeroBanco) {
+        if (cidade == null) {
+            throw new RuntimeException("Cidade não pode ser nula");
+        } else if (numeroAgencia == null) {
+            throw new RuntimeException("Número da agência não pode ser nulo");
+        } else if (numeroBanco == null) {
+            throw new RuntimeException("Número do banco não pode ser nulo");
+        }
         this.cidade = cidade;
         this.numeroAgencia = numeroAgencia.replaceAll("[^0-9]", "");
         this.numeroBanco = numeroBanco.replaceAll("[^0-9]", "");

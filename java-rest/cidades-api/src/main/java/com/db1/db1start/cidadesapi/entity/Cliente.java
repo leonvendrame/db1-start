@@ -20,6 +20,11 @@ public class Cliente {
     private Conta conta;
 
     public Cliente(String nome, String cpf) {
+        if (nome == null) {
+            throw new RuntimeException("Nome não pode ser nulo");
+        } else if (cpf == null) {
+            throw new RuntimeException("CPF não pode ser nulo");
+        }
         this.nome = nome;
         this.cpf = cpf.replaceAll("[^0-9]", "");
     }

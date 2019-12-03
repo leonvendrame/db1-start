@@ -12,9 +12,6 @@ public class EstadoDTO {
         this.nome = nome;
     }
 
-    public EstadoDTO() {
-    }
-
     public Long getId() {
         return id;
     }

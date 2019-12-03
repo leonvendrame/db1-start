@@ -5,7 +5,7 @@ import com.db1.db1start.cidadesapi.entity.Agencia;
 
 public class AgenciaAdapter {
 
-    public static AgenciaDTO transformarEntidadeParaDtp(Agencia agencia) {
+    public static AgenciaDTO transformarEntidadeParaDto(Agencia agencia) {
         return new AgenciaDTO(
                 agencia.getId(),
                 CidadeAdapter.transformarEntidadeParaDto(agencia.getCidade()),

@@ -23,6 +23,11 @@ public class Cidade {
 	private List<Agencia> agencias;
 
 	public Cidade(String nome, Estado uf) {
+		if (nome == null) {
+			throw new RuntimeException("Nome não pode ser nulo");
+		} else if (uf == null) {
+			throw new RuntimeException("Estado não pode ser nulo");
+		}
 		this.nome = nome;
 		this.uf = uf;
 		this.agencias = new ArrayList<>();

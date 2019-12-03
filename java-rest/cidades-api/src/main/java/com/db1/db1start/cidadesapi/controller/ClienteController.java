@@ -27,10 +27,9 @@ public class ClienteController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ClienteDTO> alterar(@RequestBody ClienteDTO clienteDTO) {
-        Cliente cliente;
+    public ResponseEntity<ClienteDTO> alterar(@PathVariable Long id, @RequestBody ClienteDTO clienteDTO) {
         try {
-            cliente = clienteService.atualizar(clienteDTO.getId(), clienteDTO.getNome());
+            Cliente cliente = clienteService.atualizar(id, clienteDTO.getNome());
             ClienteDTO clienteResponse = ClienteAdapter.transformarEntidadeParaDto(cliente);
             return ResponseEntity.status(200).body(clienteResponse);
         } catch (RuntimeException e) {
@@ -59,14 +58,12 @@ public class ClienteController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ClienteDTO> buscarPorId(@PathVariable Long id) {
-        Cliente cliente;
-        ClienteDTO clienteResponse;
         try {
-            cliente = clienteService.buscarPorId(id);
-            clienteResponse = ClienteAdapter.transformarEntidadeParaDto(cliente);
+            Cliente cliente = clienteService.buscarPorId(id);
+            ClienteDTO clienteResponse = ClienteAdapter.transformarEntidadeParaDto(cliente);
+            return ResponseEntity.status(200).body(clienteResponse);
         } catch (RuntimeException e) {
             return ResponseEntity.status(404).build();
         }
-        return ResponseEntity.status(200).body(clienteResponse);
     }
 }
