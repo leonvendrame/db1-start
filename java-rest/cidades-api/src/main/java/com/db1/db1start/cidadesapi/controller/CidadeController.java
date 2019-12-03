@@ -26,35 +26,23 @@ public class CidadeController {
 
     @PostMapping
     public ResponseEntity<CidadeDTO> criar(@RequestBody CidadeDTO cidadeDTO) {
-        try {
-            Estado estado = estadoService.buscarPorId(cidadeDTO.getEstado().getId());
-            Cidade cidade = cidadeService.criar(cidadeDTO.getNome(), estado);
-            CidadeDTO cidadeResponse = CidadeAdapter.transformarEntidadeParaDto(cidade);
-            return ResponseEntity.status(200).body(cidadeResponse);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(404).build();
-        }
+        Estado estado = estadoService.buscarPorId(cidadeDTO.getEstado().getId());
+        Cidade cidade = cidadeService.criar(cidadeDTO.getNome(), estado);
+        CidadeDTO cidadeResponse = CidadeAdapter.transformarEntidadeParaDto(cidade);
+        return ResponseEntity.status(201).body(cidadeResponse);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<CidadeDTO> atualizar(@PathVariable Long id, @RequestBody CidadeDTO cidadeDTO) {
-        try {
-            Cidade cidade = cidadeService.atualizar(id, cidadeDTO.getNome());
-            CidadeDTO cidadeResponse = CidadeAdapter.transformarEntidadeParaDto(cidade);
-            return ResponseEntity.status(200).body(cidadeResponse);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(404).build();
-        }
+        Cidade cidade = cidadeService.atualizar(id, cidadeDTO.getNome());
+        CidadeDTO cidadeResponse = CidadeAdapter.transformarEntidadeParaDto(cidade);
+        return ResponseEntity.status(200).body(cidadeResponse);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> removerPorId(@PathVariable Long id) {
-        try {
-            cidadeService.removerPorId(id);
-            return ResponseEntity.status(200).build();
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(404).build();
-        }
+        cidadeService.removerPorId(id);
+        return ResponseEntity.status(200).build();
     }
 
     @GetMapping
@@ -68,12 +56,8 @@ public class CidadeController {
 
     @GetMapping("/{id}")
     public ResponseEntity<CidadeDTO> buscarCidadePorId(@PathVariable Long id) {
-        try {
-            Cidade cidade = cidadeService.buscarPorId(id);
-            CidadeDTO cidadeResponse = CidadeAdapter.transformarEntidadeParaDto(cidade);
-            return ResponseEntity.status(200).body(cidadeResponse);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(404).build();
-        }
+        Cidade cidade = cidadeService.buscarPorId(id);
+        CidadeDTO cidadeResponse = CidadeAdapter.transformarEntidadeParaDto(cidade);
+        return ResponseEntity.status(200).body(cidadeResponse);
     }
 }

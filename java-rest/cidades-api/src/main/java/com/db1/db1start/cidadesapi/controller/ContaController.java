@@ -31,36 +31,24 @@ public class ContaController {
 
     @PostMapping
     public ResponseEntity<ContaDTO> criar(@RequestBody ContaDTO contaDTO) {
-        try {
-            Agencia agencia = agenciaService.buscarPorId(contaDTO.getAgencia().getId());
-            Cliente cliente = clienteService.buscarPorId(contaDTO.getCliente().getId());
-            Conta conta = contaService.criar(contaDTO.getSaldo(), agencia, cliente);
-            ContaDTO contaResponse = ContaAdapter.transfomarEntidadeParaDto(conta);
-            return ResponseEntity.status(200).body(contaResponse);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(404).build();
-        }
+        Agencia agencia = agenciaService.buscarPorId(contaDTO.getAgencia().getId());
+        Cliente cliente = clienteService.buscarPorId(contaDTO.getCliente().getId());
+        Conta conta = contaService.criar(contaDTO.getSaldo(), agencia, cliente);
+        ContaDTO contaResponse = ContaAdapter.transfomarEntidadeParaDto(conta);
+        return ResponseEntity.status(201).body(contaResponse);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ContaDTO> atualizar(@PathVariable Long id, @RequestBody ContaDTO contaDTO) {
-        try {
-            Conta conta = contaService.atualizar(id, contaDTO.getSaldo());
-            ContaDTO contaResponse = ContaAdapter.transfomarEntidadeParaDto(conta);
-            return ResponseEntity.status(200).body(contaResponse);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(404).build();
-        }
+        Conta conta = contaService.atualizar(id, contaDTO.getSaldo());
+        ContaDTO contaResponse = ContaAdapter.transfomarEntidadeParaDto(conta);
+        return ResponseEntity.status(200).body(contaResponse);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> removerPorId(@PathVariable Long id) {
-        try {
-            contaService.removerPorId(id);
-            return ResponseEntity.status(200).build();
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(404).build();
-        }
+        contaService.removerPorId(id);
+        return ResponseEntity.status(200).build();
     }
 
     @GetMapping
@@ -74,12 +62,8 @@ public class ContaController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ContaDTO> buscarPorId(@PathVariable Long id) {
-        try {
-            Conta conta = contaService.buscarPorId(id);
-            ContaDTO contaResponse = ContaAdapter.transfomarEntidadeParaDto(conta);
-            return ResponseEntity.status(200).body(contaResponse);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(404).build();
-        }
+        Conta conta = contaService.buscarPorId(id);
+        ContaDTO contaResponse = ContaAdapter.transfomarEntidadeParaDto(conta);
+        return ResponseEntity.status(200).body(contaResponse);
     }
 }

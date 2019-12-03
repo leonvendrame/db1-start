@@ -2,6 +2,7 @@ package com.db1.db1start.cidadesapi.service;
 
 import com.db1.db1start.cidadesapi.entity.Cliente;
 import com.db1.db1start.cidadesapi.entity.Conta;
+import com.db1.db1start.cidadesapi.exception.ClienteNotFoundException;
 import com.db1.db1start.cidadesapi.repository.ClienteRepository;
 import com.db1.db1start.cidadesapi.repository.ContaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,7 @@ public class ClienteService {
     }
 
     public Cliente atualizar(Long clienteId, String nomeNovo) {
-        Cliente cliente = clienteRepository.findById(clienteId).orElseThrow(
-                () -> new RuntimeException("Cliente não encontrado")
-        );
+        Cliente cliente = buscarPorId(clienteId);
         cliente.setNome(nomeNovo);
         return clienteRepository.save(cliente);
     }
@@ -42,13 +41,13 @@ public class ClienteService {
 
     public Cliente buscarPorId(Long clienteId) {
         return clienteRepository.findById(clienteId).orElseThrow(
-                () -> new RuntimeException("Cliente não encontrado")
+                ClienteNotFoundException::new
         );
     }
 
     public Cliente buscarPorNome(String nome) {
         return clienteRepository.findByNome(nome).orElseThrow(
-                () -> new RuntimeException("Cliente não encontrado")
+                ClienteNotFoundException::new
         );
     }
 
@@ -57,9 +56,7 @@ public class ClienteService {
     }
 
     public void adicionarConta(Long clienteId, Conta conta) {
-        Cliente cliente = clienteRepository.findById(clienteId).orElseThrow(
-                () -> new RuntimeException("Cliente não encontrado")
-        );
+        Cliente cliente = buscarPorId(clienteId);
         cliente.setConta(conta);
         clienteRepository.save(cliente);
     }

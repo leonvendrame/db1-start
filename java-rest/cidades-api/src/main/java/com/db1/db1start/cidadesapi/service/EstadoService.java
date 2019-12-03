@@ -1,6 +1,7 @@
 package com.db1.db1start.cidadesapi.service;
 
 import com.db1.db1start.cidadesapi.entity.Estado;
+import com.db1.db1start.cidadesapi.exception.EstadoNotFoundException;
 import com.db1.db1start.cidadesapi.repository.EstadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,13 +39,13 @@ public class EstadoService {
 
     public Estado buscarPorId(Long estadoId) {
         return estadoRepository.findById(estadoId).orElseThrow(
-                () -> new RuntimeException("Estado não encontrado")
+                EstadoNotFoundException::new
         );
     }
 
     public Estado buscarPorNome(String nome) {
         return estadoRepository.findByNome(nome).orElseThrow(
-                () -> new RuntimeException("Estado não encontrado")
+                EstadoNotFoundException::new
         );
     }
 

@@ -25,43 +25,31 @@ public class AgenciaController {
 
     @PostMapping
     public ResponseEntity<AgenciaDTO> criar(@RequestBody AgenciaDTO agenciaDTO) {
-        try {
-            Cidade cidade = cidadeService.buscarPorId(agenciaDTO.getCidade().getId());
-            Agencia agencia = agenciaService.criar(
-                    cidade,
-                    agenciaDTO.getNumeroAgencia(),
-                    agenciaDTO.getNumeroBanco()
-            );
-            AgenciaDTO agenciaResponse = AgenciaAdapter.transformarEntidadeParaDto(agencia);
-            return ResponseEntity.status(200).body(agenciaResponse);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(404).build();
-        }
+        Cidade cidade = cidadeService.buscarPorId(agenciaDTO.getCidade().getId());
+        Agencia agencia = agenciaService.criar(
+                cidade,
+                agenciaDTO.getNumeroAgencia(),
+                agenciaDTO.getNumeroBanco()
+        );
+        AgenciaDTO agenciaResponse = AgenciaAdapter.transformarEntidadeParaDto(agencia);
+        return ResponseEntity.status(200).body(agenciaResponse);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<AgenciaDTO> atualizar(@PathVariable Long id, @RequestBody AgenciaDTO agenciaDTO) {
-        try {
-            Agencia agencia = agenciaService.atualizar(
-                    id,
-                    agenciaDTO.getNumeroAgencia(),
-                    agenciaDTO.getNumeroBanco()
-            );
-            AgenciaDTO agenciaResponse = AgenciaAdapter.transformarEntidadeParaDto(agencia);
-            return ResponseEntity.status(200).body(agenciaResponse);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(400).build();
-        }
+        Agencia agencia = agenciaService.atualizar(
+                id,
+                agenciaDTO.getNumeroAgencia(),
+                agenciaDTO.getNumeroBanco()
+        );
+        AgenciaDTO agenciaResponse = AgenciaAdapter.transformarEntidadeParaDto(agencia);
+        return ResponseEntity.status(200).body(agenciaResponse);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> removerPorId(@PathVariable Long id) {
-        try {
-            agenciaService.removerPorId(id);
-            return ResponseEntity.status(200).build();
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(404).build();
-        }
+        agenciaService.removerPorId(id);
+        return ResponseEntity.status(200).build();
     }
 
     @GetMapping
@@ -75,12 +63,8 @@ public class AgenciaController {
 
     @GetMapping("/{id}")
     public ResponseEntity<AgenciaDTO> buscarPorId(@PathVariable Long id) {
-        try {
-            Agencia agencia = agenciaService.buscarPorId(id);
-            AgenciaDTO agenciaResponse = AgenciaAdapter.transformarEntidadeParaDto(agencia);
-            return ResponseEntity.status(200).body(agenciaResponse);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(404).build();
-        }
+        Agencia agencia = agenciaService.buscarPorId(id);
+        AgenciaDTO agenciaResponse = AgenciaAdapter.transformarEntidadeParaDto(agencia);
+        return ResponseEntity.status(200).body(agenciaResponse);
     }
 }

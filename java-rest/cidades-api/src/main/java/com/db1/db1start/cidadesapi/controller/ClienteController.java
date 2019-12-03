@@ -23,28 +23,20 @@ public class ClienteController {
         Cliente cliente = clienteService.criar(clienteDTO.getNome(),
                 clienteDTO.getCpf());
         ClienteDTO clienteResponse = ClienteAdapter.transformarEntidadeParaDto(cliente);
-        return ResponseEntity.status(200).body(clienteResponse);
+        return ResponseEntity.status(201).body(clienteResponse);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ClienteDTO> alterar(@PathVariable Long id, @RequestBody ClienteDTO clienteDTO) {
-        try {
-            Cliente cliente = clienteService.atualizar(id, clienteDTO.getNome());
-            ClienteDTO clienteResponse = ClienteAdapter.transformarEntidadeParaDto(cliente);
-            return ResponseEntity.status(200).body(clienteResponse);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(404).build();
-        }
+        Cliente cliente = clienteService.atualizar(id, clienteDTO.getNome());
+        ClienteDTO clienteResponse = ClienteAdapter.transformarEntidadeParaDto(cliente);
+        return ResponseEntity.status(200).body(clienteResponse);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> removerPorId(@PathVariable Long id) {
-        try {
-            clienteService.removerPorId(id);
-            return ResponseEntity.status(200).build();
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(404).build();
-        }
+        clienteService.removerPorId(id);
+        return ResponseEntity.status(200).build();
     }
 
     @GetMapping
@@ -58,12 +50,8 @@ public class ClienteController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ClienteDTO> buscarPorId(@PathVariable Long id) {
-        try {
-            Cliente cliente = clienteService.buscarPorId(id);
-            ClienteDTO clienteResponse = ClienteAdapter.transformarEntidadeParaDto(cliente);
-            return ResponseEntity.status(200).body(clienteResponse);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(404).build();
-        }
+        Cliente cliente = clienteService.buscarPorId(id);
+        ClienteDTO clienteResponse = ClienteAdapter.transformarEntidadeParaDto(cliente);
+        return ResponseEntity.status(200).body(clienteResponse);
     }
 }

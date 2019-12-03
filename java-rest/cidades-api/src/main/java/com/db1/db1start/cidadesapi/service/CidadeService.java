@@ -2,6 +2,7 @@ package com.db1.db1start.cidadesapi.service;
 
 import com.db1.db1start.cidadesapi.entity.Cidade;
 import com.db1.db1start.cidadesapi.entity.Estado;
+import com.db1.db1start.cidadesapi.exception.CidadeNotFoundException;
 import com.db1.db1start.cidadesapi.repository.CidadeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,9 +21,7 @@ public class CidadeService {
     }
 
     public Cidade atualizar(Long cidadeId, String nomeNovo) {
-        Cidade cidade = cidadeRepository.findById(cidadeId).orElseThrow(
-                () -> new RuntimeException("Cidade não encontraada")
-        );
+        Cidade cidade = buscarPorId(cidadeId);
         cidade.setNome(nomeNovo);
         return cidadeRepository.save(cidade);
     }
@@ -37,13 +36,13 @@ public class CidadeService {
 
     public Cidade buscarPorId(Long cidadeId) {
         return cidadeRepository.findById(cidadeId).orElseThrow(
-                () -> new RuntimeException("Cidade não encontrada")
+                CidadeNotFoundException::new
         );
     }
 
     public Cidade buscaCidadePorNome(String nome) {
         return cidadeRepository.findByNome(nome).orElseThrow(
-                () -> new RuntimeException("Cidade não encontrada")
+                CidadeNotFoundException::new
         );
     }
 

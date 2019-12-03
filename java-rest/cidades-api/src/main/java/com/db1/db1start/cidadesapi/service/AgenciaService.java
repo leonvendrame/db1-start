@@ -2,6 +2,7 @@ package com.db1.db1start.cidadesapi.service;
 
 import com.db1.db1start.cidadesapi.entity.Agencia;
 import com.db1.db1start.cidadesapi.entity.Cidade;
+import com.db1.db1start.cidadesapi.exception.AgenciaNotFoundException;
 import com.db1.db1start.cidadesapi.repository.AgenciaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,13 +37,13 @@ public class AgenciaService {
 
     public Agencia buscarPorId(Long agenciaId) {
         return agenciaRepository.findById(agenciaId).orElseThrow(
-                () -> new RuntimeException("Agência não encontrada")
+                AgenciaNotFoundException::new
         );
     }
 
     public Agencia buscarPorNumeroAgencia(String numeroAgencia) {
         return agenciaRepository.findByNumeroAgencia(numeroAgencia).orElseThrow(
-                () -> new RuntimeException("Agencia não encontrada")
+                AgenciaNotFoundException::new
         );
     }
 

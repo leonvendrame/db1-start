@@ -24,28 +24,20 @@ public class EstadoController {
     public ResponseEntity<EstadoDTO> criar(@RequestBody EstadoDTO estadoDTO) {
         Estado estado = estadoService.criar(estadoDTO.getNome());
         EstadoDTO estadoResponse = transformaEntidadeParaDto(estado);
-        return ResponseEntity.status(200).body(estadoResponse);
+        return ResponseEntity.status(201).body(estadoResponse);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<EstadoDTO> atualizar(@PathVariable Long id, @RequestBody EstadoDTO estadoDTO) {
-        try {
-            Estado estado = estadoService.atualizar(id, estadoDTO.getNome());
-            EstadoDTO estadoResponse = EstadoAdapter.transformaEntidadeParaDto(estado);
-            return ResponseEntity.status(200).body(estadoResponse);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(404).build();
-        }
+        Estado estado = estadoService.atualizar(id, estadoDTO.getNome());
+        EstadoDTO estadoResponse = EstadoAdapter.transformaEntidadeParaDto(estado);
+        return ResponseEntity.status(200).body(estadoResponse);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Long id) {
-        try {
-            estadoService.removerPorId(id);
-            return ResponseEntity.status(200).build();
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(404).build();
-        }
+        estadoService.removerPorId(id);
+        return ResponseEntity.status(200).build();
     }
 
     @GetMapping
@@ -59,9 +51,8 @@ public class EstadoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<EstadoDTO> buscarEstadoPorId(@PathVariable Long id) {
-        EstadoDTO estadoResponse = transformaEntidadeParaDto(
-                estadoService.buscarPorId(id)
-        );
+        Estado estado = estadoService.buscarPorId(id);
+        EstadoDTO estadoResponse = transformaEntidadeParaDto(estado);
         return ResponseEntity.status(200).body(estadoResponse);
     }
 }

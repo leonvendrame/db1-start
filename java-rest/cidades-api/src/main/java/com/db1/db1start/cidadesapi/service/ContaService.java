@@ -3,6 +3,7 @@ package com.db1.db1start.cidadesapi.service;
 import com.db1.db1start.cidadesapi.entity.Agencia;
 import com.db1.db1start.cidadesapi.entity.Cliente;
 import com.db1.db1start.cidadesapi.entity.Conta;
+import com.db1.db1start.cidadesapi.exception.ContaNotFoundException;
 import com.db1.db1start.cidadesapi.repository.ContaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class ContaService {
     }
 
     public Conta atualizar(Long contaId, Double saldoNovo) {
-        Conta conta = contaRepository.findById(contaId).orElseThrow(() -> new RuntimeException("Conta não encontrada"));
+        Conta conta = buscarPorId(contaId);
         conta.setSaldo(saldoNovo);
         return contaRepository.save(conta);
     }
@@ -45,12 +46,15 @@ public class ContaService {
     }
 
     public Conta buscarPorId(Long contaId) {
-        return contaRepository.findById(contaId).orElseThrow(() -> new RuntimeException("Conta não encontrada"));
+        Conta conta = contaRepository.findById(contaId).orElseThrow(
+                ContaNotFoundException::new
+        );
+        return conta;
     }
 
     public Conta buscarPorClienteId(Long id) {
         return contaRepository.findByCliente(clienteService.buscarPorId(id)).orElseThrow(
-                () -> new RuntimeException("Conta não encontrada")
+                ContaNotFoundException::new
         );
     }
 
