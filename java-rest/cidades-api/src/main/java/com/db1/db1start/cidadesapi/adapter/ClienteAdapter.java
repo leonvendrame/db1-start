@@ -5,7 +5,7 @@ import com.db1.db1start.cidadesapi.entity.Cliente;
 
 public class ClienteAdapter {
 
-    public static ClienteDTO transformaEntidadeParaDto(Cliente cliente) {
+    public static ClienteDTO transformarEntidadeParaDto(Cliente cliente) {
         return new ClienteDTO(cliente.getId(), cliente.getNome(), cliente.getCpf());
     }
 }

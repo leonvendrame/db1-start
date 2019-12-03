@@ -46,7 +46,11 @@ public class EstadoController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Long id) {
-        estadoService.removerPorId(id);
-        return ResponseEntity.noContent().build();
+        try {
+            estadoService.removerPorId(id);
+            return ResponseEntity.status(200).build();
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(404).build();
+        }
     }
 }

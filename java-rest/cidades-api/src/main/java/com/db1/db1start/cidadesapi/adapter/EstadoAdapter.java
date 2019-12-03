@@ -8,4 +8,8 @@ public class EstadoAdapter {
     public static EstadoDTO transformaEntidadeParaDto(Estado estado) {
         return new EstadoDTO(estado.getId(), estado.getNome());
     }
+
+    public static Estado transformarDtoParaEntidade(EstadoDTO estadoDTO) {
+        return new Estado(estadoDTO.getNome());
+    }
 }

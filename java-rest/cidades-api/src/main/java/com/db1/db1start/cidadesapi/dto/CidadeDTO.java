@@ -6,12 +6,12 @@ public class CidadeDTO {
 
     private String nome;
 
-    private Long estadoId;
+    private EstadoDTO estado;
 
-    public CidadeDTO(Long id, String nome, Long estadoId) {
+    public CidadeDTO(Long id, String nome, EstadoDTO estadoDTO) {
         this.id = id;
         this.nome = nome;
-        this.estadoId = estadoId;
+        this.estado = estadoDTO;
     }
 
     public CidadeDTO() {
@@ -33,11 +33,11 @@ public class CidadeDTO {
         this.nome = nome;
     }
 
-    public Long getEstadoId() {
-        return estadoId;
+    public EstadoDTO getEstado() {
+        return estado;
     }
 
-    public void setEstadoId(Long estadoId) {
-        this.estadoId = estadoId;
+    public void setEstado(EstadoDTO estado) {
+        this.estado = estado;
     }
 }
