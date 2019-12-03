@@ -27,7 +27,11 @@ public class CidadeService {
     }
 
     public void removerPorId(Long cidadeId) {
-        cidadeRepository.deleteById(cidadeId);
+        try {
+            cidadeRepository.deleteById(cidadeId);
+        } catch (Exception e) {
+            throw new CidadeNotFoundException();
+        }
     }
 
     public void removerTodas() {

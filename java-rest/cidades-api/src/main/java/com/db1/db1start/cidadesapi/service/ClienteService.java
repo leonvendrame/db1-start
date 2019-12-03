@@ -32,7 +32,11 @@ public class ClienteService {
     }
 
     public void removerPorId(Long clienteId) {
-        clienteRepository.deleteById(clienteId);
+        try {
+            clienteRepository.deleteById(clienteId);
+        } catch (Exception e) {
+            throw new ClienteNotFoundException();
+        }
     }
 
     public void removerTodos() {

@@ -28,7 +28,11 @@ public class AgenciaService {
     }
 
     public void removerPorId(Long agenciaId) {
-        agenciaRepository.deleteById(agenciaId);
+        try {
+            agenciaRepository.deleteById(agenciaId);
+        } catch (Exception e) {
+            throw new AgenciaNotFoundException();
+        }
     }
 
     public void removerTodos() {

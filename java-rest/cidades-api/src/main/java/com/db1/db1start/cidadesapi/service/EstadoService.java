@@ -26,11 +26,19 @@ public class EstadoService {
     }
 
     public void removerPorId(Long estadoId) {
-        estadoRepository.deleteById(estadoId);
+        try {
+            estadoRepository.deleteById(estadoId);
+        } catch (Exception e) {
+            throw new EstadoNotFoundException();
+        }
     }
 
     public void removerPorNome(String nome) {
-        estadoRepository.deleteByNome(nome);
+        try {
+            estadoRepository.deleteByNome(nome);
+        } catch (Exception e) {
+            throw new EstadoNotFoundException();
+        }
     }
 
     public void removerTodos() {;

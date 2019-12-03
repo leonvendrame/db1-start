@@ -38,7 +38,11 @@ public class ContaService {
     }
 
     public void removerPorId(Long contaId) {
-        contaRepository.deleteById(contaId);
+        try {
+            contaRepository.deleteById(contaId);
+        } catch (Exception e) {
+            throw new ContaNotFoundException();
+        }
     }
 
     public void removerTodos() {
