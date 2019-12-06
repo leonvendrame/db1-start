@@ -23,6 +23,7 @@ public class AgenciaController {
     @Autowired
     private CidadeService cidadeService;
 
+    @CrossOrigin(origins = "*")
     @PostMapping
     public ResponseEntity<AgenciaDTO> criar(@RequestBody AgenciaDTO agenciaDTO) {
         Cidade cidade = cidadeService.buscarPorId(agenciaDTO.getCidade().getId());
@@ -35,6 +36,7 @@ public class AgenciaController {
         return ResponseEntity.status(200).body(agenciaResponse);
     }
 
+    @CrossOrigin(origins = "*")
     @PutMapping("/{id}")
     public ResponseEntity<AgenciaDTO> atualizar(@PathVariable Long id, @RequestBody AgenciaDTO agenciaDTO) {
         Agencia agencia = agenciaService.atualizar(
@@ -46,12 +48,14 @@ public class AgenciaController {
         return ResponseEntity.status(200).body(agenciaResponse);
     }
 
+    @CrossOrigin(origins = "*")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> removerPorId(@PathVariable Long id) {
         agenciaService.removerPorId(id);
         return ResponseEntity.status(200).build();
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping
     public ResponseEntity<List<AgenciaDTO>> buscarTodas() {
         List<AgenciaDTO> agenciasResponse = new ArrayList<>();
@@ -61,6 +65,7 @@ public class AgenciaController {
         return ResponseEntity.status(200).body(agenciasResponse);
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/{id}")
     public ResponseEntity<AgenciaDTO> buscarPorId(@PathVariable Long id) {
         Agencia agencia = agenciaService.buscarPorId(id);

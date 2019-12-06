@@ -18,6 +18,7 @@ public class ClienteController {
     @Autowired
     private ClienteService clienteService;
 
+    @CrossOrigin(origins = "*")
     @PostMapping
     public ResponseEntity<ClienteDTO> criar(@RequestBody ClienteDTO clienteDTO) {
         Cliente cliente = clienteService.criar(clienteDTO.getNome(),
@@ -26,6 +27,7 @@ public class ClienteController {
         return ResponseEntity.status(201).body(clienteResponse);
     }
 
+    @CrossOrigin(origins = "*")
     @PutMapping("/{id}")
     public ResponseEntity<ClienteDTO> alterar(@PathVariable Long id, @RequestBody ClienteDTO clienteDTO) {
         Cliente cliente = clienteService.atualizar(id, clienteDTO.getNome());
@@ -33,12 +35,14 @@ public class ClienteController {
         return ResponseEntity.status(200).body(clienteResponse);
     }
 
+    @CrossOrigin(origins = "*")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> removerPorId(@PathVariable Long id) {
         clienteService.removerPorId(id);
         return ResponseEntity.status(200).build();
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping
     public ResponseEntity<List<ClienteDTO>> buscarTodos() {
         List<ClienteDTO> clientesResponse = new ArrayList<>();
@@ -48,6 +52,7 @@ public class ClienteController {
         return ResponseEntity.status(200).body(clientesResponse);
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/{id}")
     public ResponseEntity<ClienteDTO> buscarPorId(@PathVariable Long id) {
         Cliente cliente = clienteService.buscarPorId(id);

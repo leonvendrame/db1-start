@@ -24,6 +24,7 @@ public class CidadeController {
     @Autowired
     private EstadoService estadoService;
 
+    @CrossOrigin(origins = "*")
     @PostMapping
     public ResponseEntity<CidadeDTO> criar(@RequestBody CidadeDTO cidadeDTO) {
         Estado estado = estadoService.buscarPorId(cidadeDTO.getEstado().getId());
@@ -32,6 +33,7 @@ public class CidadeController {
         return ResponseEntity.status(201).body(cidadeResponse);
     }
 
+    @CrossOrigin(origins = "*")
     @PutMapping("/{id}")
     public ResponseEntity<CidadeDTO> atualizar(@PathVariable Long id, @RequestBody CidadeDTO cidadeDTO) {
         Cidade cidade = cidadeService.atualizar(id, cidadeDTO.getNome());
@@ -39,12 +41,14 @@ public class CidadeController {
         return ResponseEntity.status(200).body(cidadeResponse);
     }
 
+    @CrossOrigin(origins = "*")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> removerPorId(@PathVariable Long id) {
         cidadeService.removerPorId(id);
         return ResponseEntity.status(200).build();
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping
     public ResponseEntity<List<CidadeDTO>> buscarTodas() {
         List<CidadeDTO> cidadesResponse = new ArrayList<>();
@@ -54,6 +58,7 @@ public class CidadeController {
         return ResponseEntity.status(200).body(cidadesResponse);
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/{id}")
     public ResponseEntity<CidadeDTO> buscarCidadePorId(@PathVariable Long id) {
         Cidade cidade = cidadeService.buscarPorId(id);

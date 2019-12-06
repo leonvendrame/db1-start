@@ -29,6 +29,7 @@ public class ContaController {
     @Autowired
     private ClienteService clienteService;
 
+    @CrossOrigin(origins = "*")
     @PostMapping
     public ResponseEntity<ContaDTO> criar(@RequestBody ContaDTO contaDTO) {
         Agencia agencia = agenciaService.buscarPorId(contaDTO.getAgencia().getId());
@@ -38,6 +39,7 @@ public class ContaController {
         return ResponseEntity.status(201).body(contaResponse);
     }
 
+    @CrossOrigin(origins = "*")
     @PutMapping("/{id}")
     public ResponseEntity<ContaDTO> atualizar(@PathVariable Long id, @RequestBody ContaDTO contaDTO) {
         Conta conta = contaService.atualizar(id, contaDTO.getSaldo());
@@ -45,12 +47,14 @@ public class ContaController {
         return ResponseEntity.status(200).body(contaResponse);
     }
 
+    @CrossOrigin(origins = "*")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> removerPorId(@PathVariable Long id) {
         contaService.removerPorId(id);
         return ResponseEntity.status(200).build();
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping
     public ResponseEntity<List<ContaDTO>> buscarTodas() {
         List<ContaDTO> contasReponse = new ArrayList<>();
@@ -60,6 +64,7 @@ public class ContaController {
         return ResponseEntity.status(200).body(contasReponse);
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/{id}")
     public ResponseEntity<ContaDTO> buscarPorId(@PathVariable Long id) {
         Conta conta = contaService.buscarPorId(id);
